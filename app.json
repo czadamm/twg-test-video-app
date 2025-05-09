@@ -1,44 +1,31 @@
 {
   "expo": {
-    "name": "twg-test-video-app",
+    "name": "TWG Video App",
     "slug": "twg-test-video-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "twgtestvideoapp",
-    "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/images/icon.png",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.twg-test-video-app"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "package": "com.anonymous.twgtestvideoapp"
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./src/assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
       ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
