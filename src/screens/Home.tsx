@@ -6,16 +6,19 @@ import { type NativeStackScreenProps } from '@react-navigation/native-stack';
 import { type TabNavigatorParamList } from '@/src/navigators/TabNavigator';
 import { type StackNavigatorParamList } from '@/src/navigators/StackNavigator';
 
-type SearchScreenProps = CompositeScreenProps<
-  BottomTabScreenProps<TabNavigatorParamList, 'Search'>,
+type MainScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<TabNavigatorParamList, 'Home'>,
   NativeStackScreenProps<StackNavigatorParamList>
 >;
 
-export default function SearchScreen({ navigation }: SearchScreenProps) {
+export default function HomeScreen({ navigation }: MainScreenProps) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Search Screen</Text>
-      <Button title={'Home'} onPress={() => navigation.navigate('Home')} />
+      <Text>Home Screen</Text>
+      <Button title={'Login'} onPress={() => navigation.navigate('Login')} />
+      <Button title={'Search'} onPress={() => navigation.navigate('Search')} />
+      <Button title={'VideoDetails'} onPress={() => navigation.navigate('VideoDetails', { videoId: '001' })} />
+      <Button title={'Settings'} onPress={() => navigation.navigate('Settings')} />
     </View>
   );
 }
