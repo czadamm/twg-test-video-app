@@ -7,14 +7,14 @@
     "icon": "./src/assets/images/icon.png",
     "newArchEnabled": true,
     "ios": {
-      "bundleIdentifier": "com.anonymous.twg-test-video-app"
+      "bundleIdentifier": "com.twgtest.videoapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.twgtestvideoapp"
+      "package": "com.twgtest.videoapp"
     },
     "plugins": [
       [
