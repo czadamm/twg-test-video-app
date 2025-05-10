@@ -3,16 +3,8 @@ import VideoDetailsScreen from '@/src/screens/VideoDetails';
 import SettingsScreen from '@/src/screens/Settings';
 import LoginScreen from '@/src/screens/Login';
 import * as React from 'react';
-import { TabNavigator, TabNavigatorParamList } from '@/src/navigators/TabNavigator';
-import { NavigatorScreenParams } from '@react-navigation/core';
-
-// stack nav routes params (undefined for no params)
-export type StackNavigatorParamList = {
-  Login: undefined;
-  Main: NavigatorScreenParams<TabNavigatorParamList>;
-  VideoDetails: { videoId: string };
-  Settings: undefined;
-};
+import { TabNavigator } from '@/src/navigators/TabNavigator';
+import { StackNavigatorParamList } from '@/src/navigators/types';
 
 const Stack = createNativeStackNavigator<StackNavigatorParamList>();
 

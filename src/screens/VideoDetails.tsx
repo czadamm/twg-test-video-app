@@ -1,11 +1,8 @@
 import { Text, View } from 'react-native';
 import * as React from 'react';
-import { type NativeStackScreenProps } from '@react-navigation/native-stack';
-import { type StackNavigatorParamList } from '@/src/navigators/StackNavigator';
+import { VideoDetailsScreenProps } from '@/src/screens/types';
 
-type Props = NativeStackScreenProps<StackNavigatorParamList, 'VideoDetails'>;
-
-export default function VideoDetailsScreen({ route, navigation }: Props) {
+export default function VideoDetailsScreen({ route, navigation }: VideoDetailsScreenProps) {
   const videoId = route.params.videoId;
 
   return (
