@@ -1,15 +1,6 @@
 import { Button, Text, View } from 'react-native';
 import * as React from 'react';
-import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { type CompositeScreenProps } from '@react-navigation/core';
-import { type NativeStackScreenProps } from '@react-navigation/native-stack';
-import { type TabNavigatorParamList } from '@/src/navigators/TabNavigator';
-import { type StackNavigatorParamList } from '@/src/navigators/StackNavigator';
-
-type SearchScreenProps = CompositeScreenProps<
-  BottomTabScreenProps<TabNavigatorParamList, 'Search'>,
-  NativeStackScreenProps<StackNavigatorParamList>
->;
+import { SearchScreenProps } from '@/src/screens/types';
 
 export default function SearchScreen({ navigation }: SearchScreenProps) {
   return (
