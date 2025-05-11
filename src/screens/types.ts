@@ -1,8 +1,8 @@
 import type { CompositeScreenProps } from '@react-navigation/core';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import type { TabNavigatorParamList } from '@/src/navigators/TabNavigator';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { StackNavigatorParamList } from '@/src/navigators/StackNavigator';
+import type { StackNavigatorParamList, TabNavigatorParamList } from '@/src/navigators/types';
+import { YouTubeSearchItem } from '@/src/services/types';
 
 export type LoginScreenProps = NativeStackScreenProps<StackNavigatorParamList, 'Login'>;
 
@@ -22,3 +22,11 @@ export type SettingsScreenProps = CompositeScreenProps<
 >;
 
 export type VideoDetailsScreenProps = NativeStackScreenProps<StackNavigatorParamList, 'VideoDetails'>;
+
+export type VideoListsState = {
+  [keyword: string]: {
+    list: YouTubeSearchItem[];
+  };
+};
+
+export type SearchResultState = YouTubeSearchItem[];

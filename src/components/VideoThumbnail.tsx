@@ -15,7 +15,6 @@ export default function VideoThumbnail({ source }: VideoThumbnailProps) {
 
 const styles = StyleSheet.create({
   thumbnailContainer: {
-    flex: 1,
     borderRadius: 16,
     width: '100%',
     height: 'auto',

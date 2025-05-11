@@ -1,4 +1,6 @@
-import { NavigatorScreenParams } from '@react-navigation/core';
+import { CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/core';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type StackNavigatorParamList = {
   Login: undefined;
@@ -9,5 +11,10 @@ export type StackNavigatorParamList = {
 
 export type TabNavigatorParamList = {
   Home: undefined;
-  Search: undefined;
+  Search: { query: string } | undefined;
 };
+
+export type SearchNavigatorParamList = CompositeNavigationProp<
+  BottomTabNavigationProp<TabNavigatorParamList>,
+  NativeStackNavigationProp<StackNavigatorParamList>
+>;

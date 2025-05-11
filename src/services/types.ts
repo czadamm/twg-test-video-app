@@ -36,4 +36,5 @@ export type getVideosByQueryProps = {
   query: string;
   maxPerPage?: number;
   order?: string;
+  pageToken?: string | null;
 };
