@@ -68,11 +68,11 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
 
   return (
     <View style={styles.screenContainer}>
-      <ScrollView>
-        {initialLoad && loading ? (
-          <ActivityIndicator size="large" />
-        ) : (
-          topics.map((topic, index) => (
+      {initialLoad && loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <ScrollView>
+          {topics.map((topic, index) => (
             <View key={topic.keyword} style={[styles.list, { borderTopWidth: index > 0 ? 2 : 0 }]}>
               <View style={styles.titleRow}>
                 <Text style={styles.title}>{topic.title}</Text>
@@ -82,9 +82,9 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
               </View>
               <VideosList videos={videos[topic.keyword]?.list} keyword={topic.keyword} />
             </View>
-          ))
-        )}
-      </ScrollView>
+          ))}
+        </ScrollView>
+      )}
     </View>
   );
 }
@@ -92,6 +92,8 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: Colors.light.background,
   },
   list: {

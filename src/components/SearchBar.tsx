@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from 'react-native';
+import { Platform, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/Colors';
 import { useNavigation } from '@react-navigation/native';
@@ -39,15 +39,18 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     paddingHorizontal: 12,
+    paddingVertical: 10,
     alignItems: 'center',
     borderRadius: 16,
     borderWidth: 2,
     borderColor: Colors.light.primary,
   },
   input: {
-    height: 44,
     width: '100%',
     fontSize: 16,
-    lineHeight: 20,
+    lineHeight: Platform.OS !== 'ios' ? 24 : 20, // fix for iOS
+    paddingBottom: 0,
+    paddingTop: 0,
+    textAlignVertical: 'center',
   },
 });
