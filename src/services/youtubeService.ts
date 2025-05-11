@@ -22,7 +22,19 @@ export async function getVideosByQuery({ query, maxPerPage, order, pageToken }: 
   return response.data;
 }
 
-export function getTestVideoData(initialLoad: boolean) {
+export async function getVideoById(id: string) {
+  const response = await axios.get<YouTubeSearchResponse>('https://www.googleapis.com/youtube/v3/videos', {
+    params: {
+      key: YOUTUBE_API_KEY,
+      part: 'snippet',
+      id: id,
+    },
+  });
+
+  return response.data;
+}
+
+export function getTestVideosData(initialLoad: boolean) {
   if (initialLoad) {
     return VIDEOS;
   } else
@@ -33,4 +45,8 @@ export function getTestVideoData(initialLoad: boolean) {
       },
       items: [],
     };
+}
+
+export function getTestVideoData(id: string) {
+  return VIDEOS.items.filter((item) => item.id.videoId === id)[0];
 }

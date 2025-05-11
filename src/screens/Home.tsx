@@ -3,7 +3,7 @@ import * as React from 'react';
 import { MainScreenProps, VideoListsState } from '@/src/screens/types';
 import { useEffect, useMemo, useState } from 'react';
 import { YouTubeSearchItem, YouTubeSearchResponse } from '@/src/services/types';
-import { getTestVideoData, getVideosByQuery } from '@/src/services/youtubeService';
+import { getTestVideosData, getVideosByQuery } from '@/src/services/youtubeService';
 import VideosList from '@/src/components/VideosList';
 import { Colors } from '../constants/Colors';
 import { useSearch } from '@/src/hooks/useSearch';
@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
         try {
           const data = await new Promise<YouTubeSearchResponse>((resolve) => {
             setTimeout(() => {
-              resolve(getTestVideoData(initialLoad));
+              resolve(getTestVideosData(initialLoad));
             }, 100);
           });
           // const data = await getVideosByQuery({ query: topic.keyword, maxPerPage: 15 });
@@ -67,7 +67,7 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
   });
 
   return (
-    <View style={styles.screenContainer}>
+    <View style={styles.contentContainer}>
       {initialLoad && loading ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -90,7 +90,7 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
+  contentContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

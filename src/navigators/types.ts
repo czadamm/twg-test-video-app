@@ -14,7 +14,7 @@ export type TabNavigatorParamList = {
   Search: { query: string } | undefined;
 };
 
-export type SearchNavigatorParamList = CompositeNavigationProp<
+export type CombinedNavigatorsParamList = CompositeNavigationProp<
   BottomTabNavigationProp<TabNavigatorParamList>,
   NativeStackNavigationProp<StackNavigatorParamList>
 >;

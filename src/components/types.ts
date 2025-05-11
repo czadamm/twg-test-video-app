@@ -7,6 +7,7 @@ export type VideoThumbnailProps = {
 
 export type VideoListItemProps = {
   thumbnailImage: string;
+  videoId: string;
   title: string;
   publishDate: string;
   size: 'small' | 'medium' | 'large';
@@ -39,4 +40,9 @@ type ItemVariantStyles = {
 
 export type ItemSizeStyles = {
   [key in ItemSizeVariant]: ReturnType<typeof StyleSheet.create<ItemVariantStyles>>;
+};
+
+export type VideoPlayerProps = {
+  source: { uri?: string | NodeRequire | undefined };
+  customControls?: boolean;
 };

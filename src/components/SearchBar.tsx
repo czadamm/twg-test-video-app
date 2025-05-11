@@ -2,13 +2,13 @@ import { Platform, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/Colors';
 import { useNavigation } from '@react-navigation/native';
-import { SearchNavigatorParamList } from '@/src/navigators/types';
+import { CombinedNavigatorsParamList } from '@/src/navigators/types';
 import { useSearch } from '@/src/hooks/useSearch';
 
 export default function SearchBar() {
   const insets = useSafeAreaInsets();
   const { searchQuery, setSearchQuery } = useSearch();
-  const navigation = useNavigation<SearchNavigatorParamList>();
+  const navigation = useNavigation<CombinedNavigatorsParamList>();
 
   const handleSearchInputPress = () => {
     navigation.navigate('Main', { screen: 'Search' });

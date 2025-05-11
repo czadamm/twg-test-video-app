@@ -22,6 +22,7 @@ export default function VideosList({
       renderItem={({ item }) => (
         <VideoListItem
           thumbnailImage={item.snippet.thumbnails[itemSize]?.url ?? item.snippet.thumbnails?.default.url}
+          videoId={item.id.videoId}
           title={item.snippet.title}
           publishDate={item.snippet.publishedAt}
           size={itemSize}
