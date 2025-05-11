@@ -1,22 +1,31 @@
 import VideoListItem from '@/src/components/VideoListItem';
 import { FlashList } from '@shopify/flash-list';
 import * as React from 'react';
-import { VideosListProps } from '@/src/components/types';
+import { EstimatedListItemSize, VideosListProps } from '@/src/components/types';
 import { StyleSheet, View } from 'react-native';
 
-export default function VideosList({ videos, keyword }: VideosListProps) {
+export default function VideosList({
+  videos,
+  keyword,
+  horizontal = true,
+  itemSize = 'medium',
+  channelName = false,
+}: VideosListProps) {
+  const estItemSize: keyof typeof EstimatedListItemSize = itemSize;
+
   return (
     <FlashList
       data={videos}
-      horizontal={true}
-      estimatedItemSize={180}
+      horizontal={horizontal}
+      estimatedItemSize={EstimatedListItemSize[estItemSize]}
       keyExtractor={(item, index) => `${keyword}-${item.id.videoId}`}
       renderItem={({ item }) => (
         <VideoListItem
-          thumbnailImage={item.snippet.thumbnails.medium.url}
+          thumbnailImage={item.snippet.thumbnails[itemSize]?.url ?? item.snippet.thumbnails?.default.url}
           title={item.snippet.title}
           publishDate={item.snippet.publishedAt}
-          size={'medium'}
+          size={itemSize}
+          channelName={channelName ? item.snippet.channelTitle : undefined}
         />
       )}
       showsHorizontalScrollIndicator={false}
