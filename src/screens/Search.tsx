@@ -16,6 +16,7 @@ import { getTestVideosData, getVideosByQuery } from '@/src/services/youtubeServi
 import { YouTubeSearchItem, YouTubeSearchResponse } from '@/src/services/types';
 import { Colors } from '../constants/Colors';
 import VideosList from '@/src/components/VideosList';
+import StyledText from '@/src/components/ui/StyledText';
 
 export default function SearchScreen({ navigation }: SearchScreenProps) {
   const { searchQuery, sortingMethod } = useSearch();
@@ -23,6 +24,7 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
   const [totalResultsCount, setTotalResultsCount] = useState(0);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
+  const [isSortingModalOpen, setIsSortingModalOpen] = useState(false);
 
   const fetchVideos = async () => {
     setLoading(true);
@@ -48,6 +50,14 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
     setInitialLoad(false);
   };
 
+  function handleOpenSortingModal() {
+    setIsSortingModalOpen(true);
+  }
+
+  function handleCloseSortingModal() {
+    setIsSortingModalOpen(false);
+  }
+
   const debounceTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -72,19 +82,25 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
       {initialLoad && loading ? (
         <ActivityIndicator size="large" />
       ) : !results.length ? (
-        <Text>No results found</Text>
+        <StyledText>No results found</StyledText>
       ) : (
         <>
           <View style={styles.listHeader}>
-            <Text>
-              <Text>{`${totalResultsCount} results found for: “`}</Text>
-              <Text>{searchQuery}</Text>
-              <Text>{`”`}</Text>
-            </Text>
-            <Text>
-              <Text>{`Sort By: `}</Text>
-              <Text>{sortingMethod}</Text>
-            </Text>
+            <StyledText>
+              <StyledText style={styles.queryText}>{`${totalResultsCount} results found for: “`}</StyledText>
+              <StyledText style={styles.queryText} semibold>
+                {searchQuery}
+              </StyledText>
+              <StyledText style={styles.queryText}>{`”`}</StyledText>
+            </StyledText>
+            <TouchableOpacity onPress={handleOpenSortingModal}>
+              <StyledText>
+                <StyledText style={styles.soringText}>{`Sort By: `}</StyledText>
+                <StyledText style={styles.soringText} semibold>
+                  {sortingMethod}
+                </StyledText>
+              </StyledText>
+            </TouchableOpacity>
           </View>
           <ScrollView>
             <View style={styles.list}>
@@ -104,8 +120,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.light.background,
   },
-  listHeader: {},
+  listHeader: {
+    width: '100%',
+    paddingHorizontal: 24,
+  },
   list: {
     width: Dimensions.get('window').width,
+  },
+  queryText: {
+    textAlign: 'left',
+    fontSize: 10,
+    lineHeight: 24,
+  },
+  soringText: {
+    textAlign: 'right',
+    fontSize: 12,
+    lineHeight: 24,
   },
 });

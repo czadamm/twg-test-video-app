@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     fontSize: 16,
-    lineHeight: Platform.OS !== 'ios' ? 24 : 20, // fix for iOS
+    fontFamily: 'Poppins-Regular',
+    lineHeight: 24,
     paddingBottom: 0,
     paddingTop: 0,
-    textAlignVertical: 'center',
   },
 });

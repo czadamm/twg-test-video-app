@@ -1,11 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { ButtonProps } from '@/src/components/ui/types';
 import { Colors } from '@/src/constants/Colors';
+import StyledText from '@/src/components/ui/StyledText';
 
 export default function Button({ children, onPress }: ButtonProps) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-      <Text style={styles.label}>{children}</Text>
+      <StyledText style={styles.label} bold>
+        {children}
+      </StyledText>
     </TouchableOpacity>
   );
 }

@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
-import { View, Text, useWindowDimensions, StyleSheet, ScrollView, TextInput, Platform } from 'react-native';
+import { View, useWindowDimensions, StyleSheet, ScrollView, TextInput, Platform } from 'react-native';
 import { TabView, TabBar, SceneRendererProps } from 'react-native-tab-view';
 import Card from '@/src/components/ui/Card';
 import { ViewsIcon, LikesIcon } from '@/src/components/icons'; // dopasuj ścieżkę
 import { Colors } from '@/src/constants/Colors';
 import Button from '@/src/components/ui/Button';
 import { DetailsTabProps, DetailsTabRoute } from '@/src/components/types';
+import StyledText from '@/src/components/ui/StyledText';
 
 const DescriptionTab = ({ description, statistics }: DetailsTabProps) => (
   <ScrollView>
     <View style={styles.videoInfo}>
       <View style={styles.description}>
-        <Text>Description</Text>
-        <Text>{description}</Text>
+        <StyledText style={styles.dataTitle} semibold>
+          Description
+        </StyledText>
+        <StyledText style={styles.dataDescription}>{description}</StyledText>
       </View>
       <View style={styles.statistics}>
-        <Text>Statistics</Text>
+        <StyledText style={styles.dataTitle} semibold>
+          Statistics
+        </StyledText>
         <View style={styles.statisticsRow}>
           <Card icon={<ViewsIcon color={Colors.light.onPrimary} />} compact style={styles.customCard}>
             {`${statistics?.viewCount || '0'} views`}
@@ -36,8 +41,10 @@ const NotesTab = ({ notes }: DetailsTabProps) => {
         <View style={styles.videoInfo}>
           {notes?.map((note, index) => (
             <View key={index} style={styles.noteContainer}>
-              <Text style={styles.note}>{note.note}</Text>
-              <Text style={styles.timeStamp}>{note.timeStamp}</Text>
+              <StyledText style={styles.note}>{note.note}</StyledText>
+              <StyledText style={styles.timeStamp} semibold>
+                {note.timeStamp}
+              </StyledText>
             </View>
           ))}
         </View>
@@ -148,5 +155,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: Platform.OS !== 'ios' ? 12 : 14, // fox for iOS
     textAlignVertical: 'top',
+  },
+  dataTitle: {
+    fontSize: 10,
+    lineHeight: 12,
+  },
+  dataDescription: {
+    fontSize: 12,
+    lineHeight: 12,
   },
 });
