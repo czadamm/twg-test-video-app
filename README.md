@@ -1,12 +1,9 @@
-# Welcome to your Expo app 👋
+# Welcome TWG Team 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is my implementation of YouTube Learn App created for recruitment process purpose.
 
 
-
-### How do I get set up?
-
-Summary of set up
+### How to set up?
 
 Follow https://docs.expo.dev/get-started/set-up-your-environment/?mode=development-build&buildEnv=local
 
