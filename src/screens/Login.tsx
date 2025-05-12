@@ -28,16 +28,18 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         <Button style={styles.loginButton} onPress={handleRedirectToHome}>
           Lon in as guest
         </Button>
-        <StyledText>
-          <StyledText style={styles.linksText}>By continuing you agree with</StyledText>
-          <StyledText style={styles.link} onPress={handleRedirectToPolicy}>
-            Terms and Conditions
+        <View>
+          <StyledText style={styles.linksText}>{`By continuing you agree with `}</StyledText>
+          <StyledText>
+            <StyledText style={styles.link} onPress={handleRedirectToPolicy}>
+              Terms and Conditions
+            </StyledText>
+            <StyledText style={styles.linksText}>{` and `}</StyledText>
+            <StyledText style={styles.link} onPress={handleRedirectToPolicy}>
+              Privacy Policy
+            </StyledText>
           </StyledText>
-          <StyledText style={styles.linksText}>and</StyledText>
-          <StyledText style={styles.link} onPress={handleRedirectToPolicy}>
-            Privacy Policy
-          </StyledText>
-        </StyledText>
+        </View>
       </View>
     </View>
   );
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
     color: Colors.light.onPrimaryContainer,
   },
   link: {
+    textAlign: 'center',
     textDecorationLine: 'underline',
   },
 });
