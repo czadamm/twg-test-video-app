@@ -21,12 +21,12 @@ export default function VideoDetailsScreen({ route, navigation }: VideoDetailsSc
     setLoading(true);
 
     try {
-      // const data = await new Promise<YouTubeVideoResponse>((resolve) => {
-      //   setTimeout(() => {
-      //     resolve(getTestVideoData(videoId));
-      //   }, 100);
-      // });
-      const data = await getVideoById(videoId);
+      const data = await new Promise<YouTubeVideoResponse>((resolve) => {
+        setTimeout(() => {
+          resolve(getTestVideoData(videoId));
+        }, 100);
+      });
+      // const data = await getVideoById(videoId);
 
       console.log(data);
 

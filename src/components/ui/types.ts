@@ -7,6 +7,7 @@ export type IconButtonProps = {
   size: number;
   position?: Pick<ViewStyle, 'top' | 'left' | 'right' | 'bottom' | 'transform'>;
   backgroundStyle?: ViewStyle;
+  absolute?: boolean;
 };
 
 export type CardProps = {
