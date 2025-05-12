@@ -21,7 +21,8 @@ export default function VideosList({
       keyExtractor={(item, index) => `${keyword}-${item.id.videoId}`}
       renderItem={({ item }) => (
         <VideoListItem
-          thumbnailImage={item.snippet.thumbnails[itemSize]?.url ?? item.snippet.thumbnails?.default.url}
+          thumbnailImage={item.snippet.thumbnails.high?.url ?? item.snippet.thumbnails.default.url}
+          videoId={item.id.videoId}
           title={item.snippet.title}
           publishDate={item.snippet.publishedAt}
           size={itemSize}

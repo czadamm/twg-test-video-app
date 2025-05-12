@@ -1,27 +1,38 @@
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import VideoThumbnail from '@/src/components/VideoThumbnail';
 import { ItemSizeStyles, VideoListItemProps } from '@/src/components/types';
 import { memo } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { CombinedNavigatorsParamList } from '@/src/navigators/types';
 
 // React.memo for avoiding re-render list items when no props changed
 const VideoListItem = memo(function VideoListItem({
   thumbnailImage,
+  videoId,
   title,
   publishDate,
   size,
   channelName,
 }: VideoListItemProps) {
+  const navigation = useNavigation<CombinedNavigatorsParamList>();
+
+  function redirectToDetails() {
+    navigation.navigate('VideoDetails', { videoId: videoId });
+  }
+
   return (
-    <View style={styles[size].itemContainer}>
-      <VideoThumbnail source={thumbnailImage} />
-      <View style={styles[size].infoContainer}>
-        {channelName && <Text style={styles[size].channel}>{channelName}</Text>}
-        <Text numberOfLines={2} style={styles[size].title}>
-          {title}
-        </Text>
+    <TouchableOpacity onPress={redirectToDetails}>
+      <View style={styles[size].itemContainer}>
+        <VideoThumbnail source={thumbnailImage} />
+        <View style={styles[size].infoContainer}>
+          {channelName && <Text style={styles[size].channel}>{channelName}</Text>}
+          <Text numberOfLines={2} style={styles[size].title}>
+            {title}
+          </Text>
+        </View>
+        <Text style={styles[size].date}>{new Date(publishDate).toLocaleDateString()}</Text>
       </View>
-      <Text style={styles[size].date}>{new Date(publishDate).toLocaleDateString()}</Text>
-    </View>
+    </TouchableOpacity>
   );
 });
 

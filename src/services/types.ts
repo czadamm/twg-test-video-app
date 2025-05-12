@@ -32,6 +32,32 @@ export interface YouTubeSearchItem {
   };
 }
 
+export type YouTubeVideoResponse = {
+  items: YouTubeVideoItem[];
+};
+
+export type YouTubeVideoItem = {
+  id: string;
+  snippet: {
+    title: string;
+    description: string;
+    thumbnails: {
+      [key: string]: {
+        url: string;
+        width: number;
+        height: number;
+      };
+    };
+    publishedAt: string;
+    channelTitle: string;
+  };
+  statistics: {
+    viewCount: string;
+    likeCount?: string;
+    commentCount?: string;
+  };
+};
+
 export type getVideosByQueryProps = {
   query: string;
   maxPerPage?: number;

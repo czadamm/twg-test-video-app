@@ -12,7 +12,7 @@ import * as React from 'react';
 import { SearchResultState, SearchScreenProps } from '@/src/screens/types';
 import { useSearch } from '@/src/hooks/useSearch';
 import { useEffect, useRef, useState } from 'react';
-import { getTestVideoData, getVideosByQuery } from '@/src/services/youtubeService';
+import { getTestVideosData, getVideosByQuery } from '@/src/services/youtubeService';
 import { YouTubeSearchItem, YouTubeSearchResponse } from '@/src/services/types';
 import { Colors } from '../constants/Colors';
 import VideosList from '@/src/components/VideosList';
@@ -32,7 +32,7 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
     try {
       // const data = await new Promise<YouTubeSearchResponse>((resolve) => {
       //   setTimeout(() => {
-      //     resolve(getTestVideoData(initialLoad));
+      //     resolve(getTestVideosData(initialLoad));
       //   }, 100);
       // });
       const data = await getVideosByQuery({ query: searchQuery, maxPerPage: 15 });

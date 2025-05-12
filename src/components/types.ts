@@ -1,5 +1,5 @@
 import { YouTubeSearchItem } from '@/src/services/types';
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { ImageSourcePropType, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 export type VideoThumbnailProps = {
   source: string;
@@ -7,6 +7,7 @@ export type VideoThumbnailProps = {
 
 export type VideoListItemProps = {
   thumbnailImage: string;
+  videoId: string;
   title: string;
   publishDate: string;
   size: 'small' | 'medium' | 'large';
@@ -39,4 +40,30 @@ type ItemVariantStyles = {
 
 export type ItemSizeStyles = {
   [key in ItemSizeVariant]: ReturnType<typeof StyleSheet.create<ItemVariantStyles>>;
+};
+
+export type VideoPlayerProps = {
+  source: { uri?: string | NodeRequire | undefined };
+  customControls?: boolean;
+  thumbnail?: string;
+};
+
+type DetailsRouteKey = 'description' | 'notes';
+
+export type DetailsTabRoute = {
+  key: DetailsRouteKey;
+  title: string;
+};
+
+export type DetailsTabProps = {
+  description?: string;
+  statistics?: {
+    viewCount?: string;
+    likeCount?: string;
+  };
+  notes?: {
+    videoId: string;
+    timeStamp: string;
+    note: string;
+  }[];
 };

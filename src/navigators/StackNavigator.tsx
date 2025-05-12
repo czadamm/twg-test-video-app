@@ -12,7 +12,7 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Main" options={{ headerShown: false, title: 'Home' }} component={TabNavigator} />
-      <Stack.Screen name="VideoDetails" component={VideoDetailsScreen} />
+      <Stack.Screen name="VideoDetails" options={{ headerShown: false }} component={VideoDetailsScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
