@@ -11,10 +11,10 @@ const Stack = createNativeStackNavigator<StackNavigatorParamList>();
 export default function StackNavigator() {
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
       <Stack.Screen name="Main" options={{ headerShown: false, title: 'Home' }} component={TabNavigator} />
       <Stack.Screen name="VideoDetails" options={{ headerShown: false }} component={VideoDetailsScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 }

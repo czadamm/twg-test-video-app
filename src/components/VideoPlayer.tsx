@@ -8,6 +8,7 @@ import * as Icons from '@/src/components/icons';
 import IconButton from '@/src/components/ui/IconButton';
 import { useNavigation } from '@react-navigation/native';
 import { Slider } from '@react-native-assets/slider';
+import StyledText from '@/src/components/ui/StyledText';
 
 export default function VideoPlayer({ source, customControls }: VideoPlayerProps) {
   const [areControlsVisible, setAreControlsVisible] = useState(false);
@@ -140,9 +141,9 @@ export default function VideoPlayer({ source, customControls }: VideoPlayerProps
           >
             <Icons.ForwardIcon color={Colors.light.onPrimary} />
           </IconButton>
-          <Text style={styles.playbackTime}>
+          <StyledText style={styles.playbackTime} bold>
             {formatTime(videoCurrentTime)} / {formatTime(videoDuration)}
-          </Text>
+          </StyledText>
           <Slider
             style={styles.slider}
             minimumValue={0}
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
   },
   playbackTime: {
     position: 'absolute',
+    fontSize: 10,
     bottom: 12,
     left: 8,
     color: Colors.light.onPrimary,

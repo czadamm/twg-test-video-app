@@ -8,6 +8,7 @@ import VideosList from '@/src/components/VideosList';
 import { Colors } from '../constants/Colors';
 import { useSearch } from '@/src/hooks/useSearch';
 import { useFocusEffect } from '@react-navigation/core';
+import StyledText from '@/src/components/ui/StyledText';
 
 export default function HomeScreen({ navigation }: MainScreenProps) {
   const [videos, setVideos] = useState<VideoListsState>({});
@@ -75,9 +76,9 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
           {topics.map((topic, index) => (
             <View key={topic.keyword} style={[styles.list, { borderTopWidth: index > 0 ? 2 : 0 }]}>
               <View style={styles.titleRow}>
-                <Text style={styles.title}>{topic.title}</Text>
+                <StyledText style={styles.title}>{topic.title}</StyledText>
                 <TouchableOpacity onPress={() => handleShowMore(topic.keyword)}>
-                  <Text style={styles.showMoreButton}>Show more</Text>
+                  <StyledText style={styles.showMoreButton}>Show more</StyledText>
                 </TouchableOpacity>
               </View>
               <VideosList videos={videos[topic.keyword]?.list} keyword={topic.keyword} />
@@ -109,9 +110,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    fontFamily: 'Poppins-SemiBold',
   },
   showMoreButton: {
     textDecorationLine: 'underline',
     fontSize: 12,
+    lineHeight: 24,
   },
 });

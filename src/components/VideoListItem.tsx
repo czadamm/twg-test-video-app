@@ -4,6 +4,7 @@ import { ItemSizeStyles, VideoListItemProps } from '@/src/components/types';
 import { memo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { CombinedNavigatorsParamList } from '@/src/navigators/types';
+import StyledText from '@/src/components/ui/StyledText';
 
 // React.memo for avoiding re-render list items when no props changed
 const VideoListItem = memo(function VideoListItem({
@@ -26,11 +27,11 @@ const VideoListItem = memo(function VideoListItem({
         <VideoThumbnail source={thumbnailImage} />
         <View style={styles[size].infoContainer}>
           {channelName && <Text style={styles[size].channel}>{channelName}</Text>}
-          <Text numberOfLines={2} style={styles[size].title}>
+          <StyledText numberOfLines={2} style={styles[size].title}>
             {title}
-          </Text>
+          </StyledText>
         </View>
-        <Text style={styles[size].date}>{new Date(publishDate).toLocaleDateString()}</Text>
+        <StyledText style={styles[size].date}>{new Date(publishDate).toLocaleDateString()}</StyledText>
       </View>
     </TouchableOpacity>
   );

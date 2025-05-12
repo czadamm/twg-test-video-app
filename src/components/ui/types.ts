@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 import { ReactNode } from 'react';
 
 export type IconButtonProps = {
@@ -7,6 +7,7 @@ export type IconButtonProps = {
   size: number;
   position?: Pick<ViewStyle, 'top' | 'left' | 'right' | 'bottom' | 'transform'>;
   backgroundStyle?: ViewStyle;
+  absolute?: boolean;
 };
 
 export type CardProps = {
@@ -19,4 +20,12 @@ export type CardProps = {
 export type ButtonProps = {
   children: string;
   onPress: () => void;
+  style?: ViewStyle;
+};
+
+export type StyledTextProps = {
+  children: ReactNode;
+  bold?: boolean;
+  semibold?: boolean;
+  style?: TextStyle;
 };

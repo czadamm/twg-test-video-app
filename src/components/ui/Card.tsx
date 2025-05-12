@@ -1,12 +1,15 @@
 import { CardProps } from '@/src/components/ui/types';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Colors } from '@/src/constants/Colors';
+import StyledText from '@/src/components/ui/StyledText';
 
 export default function Card({ icon, compact, children, style }: CardProps) {
   return (
     <View style={[styles.cardContainer, compact ? styles.compact : null, style]}>
       {icon && <View style={styles.iconContainer}>{icon}</View>}
-      <Text style={styles.description}>{children}</Text>
+      <StyledText style={styles.description} semibold>
+        {children}
+      </StyledText>
     </View>
   );
 }
