@@ -30,12 +30,12 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
     setTotalResultsCount(0);
 
     try {
-      const data = await new Promise<YouTubeSearchResponse>((resolve) => {
-        setTimeout(() => {
-          resolve(getTestVideosData(initialLoad));
-        }, 100);
-      });
-      // const data = await getVideosByQuery({ query: searchQuery, maxPerPage: 15 });
+      // const data = await new Promise<YouTubeSearchResponse>((resolve) => {
+      //   setTimeout(() => {
+      //     resolve(getTestVideosData(initialLoad));
+      //   }, 100);
+      // });
+      const data = await getVideosByQuery({ query: searchQuery, maxPerPage: 15 });
       const newVideos = data.items.filter((item: YouTubeSearchItem) => item.id.kind === 'youtube#video');
 
       setResults((prevState) => [...prevState, ...newVideos]);

@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { getVideosByQueryProps, YouTubeSearchItem, YouTubeSearchResponse } from '@/src/services/types';
-import { VIDEOS } from '@/src/services/test-data';
+import { getVideosByQueryProps, YouTubeSearchResponse, YouTubeVideoResponse } from '@/src/services/types';
+import { TEST_SEARCH_VIDEOS, TEST_VIDEOS } from '@/src/services/test-data';
 
 // temp public access to API for recruitment process only
 // TODO: delete YOUTUBE_API_KEY after demonstration
-const YOUTUBE_API_KEY = 'AIzaSyBLplCPgEIVIZJDM7fxuf-rhW1AU1mwSjk';
+// const YOUTUBE_API_KEY = 'AIzaSyBLplCPgEIVIZJDM7fxuf-rhW1AU1mwSjk';
+const YOUTUBE_API_KEY = 'AIzaSyChPziNFHvSyNN_p4d_FUoAq1DG5XF3-98';
 
 export async function getVideosByQuery({ query, maxPerPage, order, pageToken }: getVideosByQueryProps) {
   const response = await axios.get<YouTubeSearchResponse>('https://www.googleapis.com/youtube/v3/search', {
@@ -23,20 +24,20 @@ export async function getVideosByQuery({ query, maxPerPage, order, pageToken }: 
 }
 
 export async function getVideoById(id: string) {
-  const response = await axios.get<YouTubeSearchResponse>('https://www.googleapis.com/youtube/v3/videos', {
+  const response = await axios.get<YouTubeVideoResponse>('https://www.googleapis.com/youtube/v3/videos', {
     params: {
       key: YOUTUBE_API_KEY,
-      part: 'snippet',
+      part: 'snippet, statistics',
       id: id,
     },
   });
 
-  return response.data;
+  return response.data.items[0];
 }
 
 export function getTestVideosData(initialLoad: boolean) {
   if (initialLoad) {
-    return VIDEOS;
+    return TEST_SEARCH_VIDEOS;
   } else
     return {
       pageInfo: {
@@ -48,5 +49,5 @@ export function getTestVideosData(initialLoad: boolean) {
 }
 
 export function getTestVideoData(id: string) {
-  return VIDEOS.items.filter((item) => item.id.videoId === id)[0];
+  return TEST_VIDEOS.items.find((item) => item.id === id);
 }
