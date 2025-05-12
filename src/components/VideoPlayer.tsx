@@ -58,7 +58,7 @@ export default function VideoPlayer({ source, customControls }: VideoPlayerProps
     return () => {
       clearTimeout(visibilityTimer);
     };
-  }, [isPaused, areControlsVisible, videoCurrentTime, isMuted]);
+  }, [isPaused, areControlsVisible, isMuted]);
 
   return (
     <View style={styles.playerContainer}>
