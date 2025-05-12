@@ -32,12 +32,12 @@ export default function HomeScreen({ navigation }: MainScreenProps) {
 
       for (let topic of topics) {
         try {
-          const data = await new Promise<YouTubeSearchResponse>((resolve) => {
-            setTimeout(() => {
-              resolve(getTestVideosData(initialLoad));
-            }, 100);
-          });
-          // const data = await getVideosByQuery({ query: topic.keyword, maxPerPage: 15 });
+          // const data = await new Promise<YouTubeSearchResponse>((resolve) => {
+          //   setTimeout(() => {
+          //     resolve(getTestVideosData(initialLoad));
+          //   }, 100);
+          // });
+          const data = await getVideosByQuery({ query: topic.keyword, maxPerPage: 15 });
           const newVideos = data.items.filter((item: YouTubeSearchItem) => item.id.kind === 'youtube#video');
 
           setVideos((prevState) => ({

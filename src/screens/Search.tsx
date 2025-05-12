@@ -1,25 +1,18 @@
-import {
-  ActivityIndicator,
-  Button,
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Dimensions, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import * as React from 'react';
 import { SearchResultState, SearchScreenProps } from '@/src/screens/types';
 import { useSearch } from '@/src/hooks/useSearch';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { getTestVideosData, getVideosByQuery } from '@/src/services/youtubeService';
 import { YouTubeSearchItem, YouTubeSearchResponse } from '@/src/services/types';
 import { Colors } from '../constants/Colors';
 import VideosList from '@/src/components/VideosList';
 import StyledText from '@/src/components/ui/StyledText';
+import Modal from 'react-native-modal';
+import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
 
 export default function SearchScreen({ navigation }: SearchScreenProps) {
-  const { searchQuery, sortingMethod } = useSearch();
+  const { searchQuery, sortingMethod, setSortingMethod } = useSearch();
   const [results, setResults] = useState<SearchResultState>([]);
   const [totalResultsCount, setTotalResultsCount] = useState(0);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
@@ -32,12 +25,12 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
     setTotalResultsCount(0);
 
     try {
-      const data = await new Promise<YouTubeSearchResponse>((resolve) => {
-        setTimeout(() => {
-          resolve(getTestVideosData(initialLoad));
-        }, 100);
-      });
-      // const data = await getVideosByQuery({ query: searchQuery, maxPerPage: 15 });
+      // const data = await new Promise<YouTubeSearchResponse>((resolve) => {
+      //   setTimeout(() => {
+      //     resolve(getTestVideosData(initialLoad));
+      //   }, 100);
+      // });
+      const data = await getVideosByQuery({ query: searchQuery, maxPerPage: 15, order: sortingMethod });
       const newVideos = data.items.filter((item: YouTubeSearchItem) => item.id.kind === 'youtube#video');
 
       setResults((prevState) => [...prevState, ...newVideos]);
@@ -77,6 +70,29 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
     };
   }, [searchQuery, sortingMethod]);
 
+  const sortButtons: RadioButtonProps[] = useMemo(
+    () => [
+      {
+        id: 'date', // acts as primary key, should be unique and non-empty string
+        label: 'Upload date: latest',
+      },
+      {
+        id: 'rating',
+        label: 'Upload date: oldest',
+      },
+      {
+        id: 'viewCount',
+        label: 'Most popular',
+      },
+    ],
+    []
+  );
+
+  function handleSetSorting(value: string) {
+    setSortingMethod(value);
+    handleCloseSortingModal();
+  }
+
   return (
     <View style={styles.contentContainer}>
       {initialLoad && loading ? (
@@ -107,6 +123,18 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
               <VideosList videos={results} horizontal={false} itemSize={'large'} channelName={true} />
             </View>
           </ScrollView>
+          <Modal isVisible={isSortingModalOpen}>
+            <View style={styles.modal}>
+              <StyledText style={styles.modalTitle}>Search records by:</StyledText>
+              <RadioGroup
+                radioButtons={sortButtons}
+                onPress={handleSetSorting}
+                selectedId={sortingMethod}
+                containerStyle={{ alignItems: 'flex-start', paddingVertical: 24 }}
+                labelStyle={{ color: Colors.light.onPrimaryContainer }}
+              />
+            </View>
+          </Modal>
         </>
       )}
     </View>
@@ -136,5 +164,14 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontSize: 12,
     lineHeight: 24,
+  },
+  modal: {
+    padding: 24,
+    backgroundColor: Colors.light.primaryContainer,
+    borderRadius: 24,
+  },
+  modalTitle: {
+    fontSize: 18,
+    color: Colors.light.onPrimaryContainer,
   },
 });

@@ -20,6 +20,7 @@ export type CardProps = {
 export type ButtonProps = {
   children: string;
   onPress: () => void;
+  style?: ViewStyle;
 };
 
 export type StyledTextProps = {

@@ -3,9 +3,9 @@ import { ButtonProps } from '@/src/components/ui/types';
 import { Colors } from '@/src/constants/Colors';
 import StyledText from '@/src/components/ui/StyledText';
 
-export default function Button({ children, onPress }: ButtonProps) {
+export default function Button({ children, onPress, style }: ButtonProps) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
+    <TouchableOpacity onPress={onPress} style={[styles.buttonContainer, style]}>
       <StyledText style={styles.label} bold>
         {children}
       </StyledText>
