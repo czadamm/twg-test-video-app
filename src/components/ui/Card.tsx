@@ -5,7 +5,7 @@ import { Colors } from '@/src/constants/Colors';
 export default function Card({ icon, compact, children, style }: CardProps) {
   return (
     <View style={[styles.cardContainer, compact ? styles.compact : null, style]}>
-      {icon ?? null}
+      {icon && <View style={styles.iconContainer}>{icon}</View>}
       <Text style={styles.description}>{children}</Text>
     </View>
   );
@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     gap: 8,
     borderRadius: 8,
     backgroundColor: Colors.light.primary,
+  },
+  iconContainer: {
+    width: 20,
+    height: 20,
   },
   compact: {
     flexDirection: 'row',

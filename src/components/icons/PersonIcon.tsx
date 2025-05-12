@@ -4,7 +4,7 @@ import type { SvgProps } from 'react-native-svg';
 import { IconProps } from '@/src/components/icons/types';
 
 const SvgPersonIcon = ({ color = '#2B2D42', ...props }: IconProps & SvgProps) => (
-  <Svg width={24} height={24} viewBox="0 0 32 32" fill="none" {...props}>
+  <Svg width={'100%'} height={'100%'} viewBox="0 0 32 32" fill="none" {...props}>
     <G clipPath="url(#person-icon_svg__a)">
       <Path
         fill={color}

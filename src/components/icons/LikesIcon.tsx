@@ -4,7 +4,7 @@ import type { SvgProps } from 'react-native-svg';
 import { IconProps } from '@/src/components/icons/types';
 
 const SvgLikesIcon = ({ color = '#2B2D42', ...props }: IconProps & SvgProps) => (
-  <Svg width={32} height={32} viewBox="0 0 32 32" fill="none" {...props}>
+  <Svg width={'100%'} height={'100%'} viewBox="0 0 32 32" fill="none" {...props}>
     <Path
       stroke={color}
       strokeLinecap="round"

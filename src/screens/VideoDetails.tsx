@@ -1,15 +1,13 @@
-import { ActivityIndicator, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StatusBar, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import { VideoDetailsScreenProps } from '@/src/screens/types';
 import { useEffect, useState } from 'react';
-import { YouTubeSearchItem, YouTubeVideoItem, YouTubeVideoResponse } from '@/src/services/types';
-import { getTestVideoData, getTestVideosData, getVideoById } from '@/src/services/youtubeService';
+import { YouTubeVideoItem, YouTubeVideoResponse } from '@/src/services/types';
+import { getTestVideoData, getVideoById } from '@/src/services/youtubeService';
 import { Colors } from '@/src/constants/Colors';
-import CustomVideoPlayer from '@/src/components/VideoPlayer';
+import VideoPlayer from '@/src/components/VideoPlayer';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PersonIcon from '@/src/components/icons/PersonIcon';
-import Card from '@/src/components/ui/Card';
-import { LikesIcon, ViewsIcon } from '@/src/components/icons';
 import { DetailsTabView } from '@/src/components/DetailsTabView';
 import { TEST_NOTES } from '@/src/services/test-data';
 
@@ -48,7 +46,7 @@ export default function VideoDetailsScreen({ route, navigation }: VideoDetailsSc
     <View style={styles.contentContainer}>
       <StatusBar barStyle="light-content" backgroundColor={'black'} />
       <View style={[styles.videoContainer, { paddingTop: insets.top }]}>
-        <CustomVideoPlayer source={require('@/src/assets/videos/broadchurch.mp4')} />
+        <VideoPlayer source={require('@/src/assets/videos/broadchurch.mp4')} customControls />
       </View>
       <View style={styles.infoContainer}>
         {loading ? (
@@ -60,7 +58,7 @@ export default function VideoDetailsScreen({ route, navigation }: VideoDetailsSc
             <Text>{`Video: ${videoData?.snippet.title}`}</Text>
             <View style={styles.channelInfo}>
               <View style={styles.iconContainer}>
-                <PersonIcon width={20} height={20} color={Colors.light.onPrimary} />
+                <PersonIcon color={Colors.light.onPrimary} />
               </View>
               <Text>{videoData?.snippet.channelTitle}</Text>
             </View>
@@ -105,6 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.primary,
     width: 48,
     height: 48,
+    padding: 14,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '50%',

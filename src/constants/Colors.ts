@@ -8,6 +8,8 @@ export const Colors = {
     primaryContainer: 'rgba(141,153,174,1)',
     onPrimaryContainer: 'rgba(255,255,255,1)',
     backdrop: 'rgba(0,0,0,0.25)',
+    borderLight: 'rgba(200, 200, 200, 1)',
+    playerSliderTint: 'rgba(199, 31, 31, 1)',
   },
   // dark theme
   // ...

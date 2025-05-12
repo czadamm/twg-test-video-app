@@ -1,22 +1,19 @@
 import { IconButtonProps } from '@/src/components/ui/types';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Colors } from '@/src/constants/Colors';
 
-export default function IconButton({ children, onPress, size, position, backgroundStyle }: IconButtonProps) {
+export default function PlayerButton({ children, onPress, size, position, backgroundStyle }: IconButtonProps) {
   return (
-    <Pressable onPress={onPress} style={position}>
+    <TouchableOpacity onPress={onPress} style={[{ position: 'absolute' }, position]}>
       <View style={[styles.buttonContainer, { width: size, height: size }, backgroundStyle]}>{children}</View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    padding: 4,
-    backgroundColor: 'black',
+    padding: 6,
+    backgroundColor: Colors.light.backdrop,
     borderRadius: '50%',
-  },
-  iconImage: {
-    width: '100%',
-    height: '100%',
   },
 });

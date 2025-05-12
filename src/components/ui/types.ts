@@ -5,7 +5,7 @@ export type IconButtonProps = {
   children: ReactNode;
   onPress: () => void;
   size: number;
-  position?: Pick<ViewStyle, 'top' | 'left' | 'right' | 'bottom'>;
+  position?: Pick<ViewStyle, 'top' | 'left' | 'right' | 'bottom' | 'transform'>;
   backgroundStyle?: ViewStyle;
 };
 

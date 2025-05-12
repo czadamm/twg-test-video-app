@@ -17,18 +17,10 @@ const DescriptionTab = ({ description, statistics }: DetailsTabProps) => (
       <View style={styles.statistics}>
         <Text>Statistics</Text>
         <View style={styles.statisticsRow}>
-          <Card
-            icon={<ViewsIcon width={20} height={20} color={Colors.light.onPrimary} />}
-            compact
-            style={styles.customCard}
-          >
+          <Card icon={<ViewsIcon color={Colors.light.onPrimary} />} compact style={styles.customCard}>
             {`${statistics?.viewCount || '0'} views`}
           </Card>
-          <Card
-            icon={<LikesIcon width={20} height={20} color={Colors.light.onPrimary} />}
-            compact
-            style={styles.customCard}
-          >
+          <Card icon={<LikesIcon color={Colors.light.onPrimary} />} compact style={styles.customCard}>
             {`${statistics?.likeCount || '0'} likes`}
           </Card>
         </View>
