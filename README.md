@@ -1,6 +1,6 @@
-# Welcome TWG Team 👋
+# Welcome 👋
 
-This is my implementation of YouTube Learn App created for recruitment process purpose.
+This is my implementation of video search App.
 
 
 ### How to set up?
